@@ -13,10 +13,14 @@ Run the test, you can either run thorough karma or gulp:
 
 1. run through karma:
      karma start 
+	 
   or 
+	 
 	 karma start --auto-watch --no-single-run
 	
 2. run through gulp:
-    gulp test
+    
+	 gulp test
   or
-    gulp tdd 
+     
+	 gulp tdd 
