@@ -10,12 +10,13 @@ Install node modules
    npm install
    
 Run the test, you can either run thorough karma or gulp:
+
 1. run through karma:
-     karma start
-	or 
+     karma start 
+  or 
 	 karma start --auto-watch --no-single-run
 	
 2. run through gulp:
     gulp test
-   or
+  or
     gulp tdd 
