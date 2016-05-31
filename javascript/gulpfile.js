@@ -21,4 +21,17 @@ gulp.task('tdd', function (done) {
   }, done).start();
 });
 
+
+gulp.task('debug-karma', function (done) {
+  new Server({
+    configFile: __dirname + '/karma.conf.js',
+    browsers: ['Chrome_with_debugging'],
+    preprocessors: {
+  		 'src/*.js': []
+    },
+	  singleRun: false,
+	  autoWatch: true,
+  }, done).start();
+});
+
 gulp.task('default', ['tdd']);

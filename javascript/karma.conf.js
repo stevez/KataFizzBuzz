@@ -28,15 +28,42 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
+      'src/*.js': ['coverage'],
     },
 
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress'],
+    reporters: ['progress', 'coverage', 'junit'],
 
+    junitReporter: {
+		 outputDir: 'target/reports/junit',
+		 outputFile: 'junit.xml',
+         useBrowserName: true
+	  },
+    
+    coverageReporter: {
+      // relative to basePath
+      dir: 'target/reports/coverage',
+      reporters: [
+        { type: 'html', subdir: 'report-html' },
+        { type: 'lcov', subdir: 'report-lcov' },
+        { type: 'cobertura', subdir: 'report-cobertura', file: 'cobertura.xml' }
+      ],
+    },
+    
+    plugins: [
+      'karma-coverage',
+      'karma-jasmine',
+      'karma-phantomjs-launcher',
+      'karma-chrome-launcher',
+      'karma-junit-reporter'
+    ],
 	
+    // web server port
+    port: 9876,
+    
     // enable / disable colors in the output (reporters and logs)
     colors: true,
 
@@ -54,6 +81,12 @@ module.exports = function(config) {
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
     browsers: ['PhantomJS'],
 
+    customLaunchers: {
+      Chrome_with_debugging: {
+        base: 'Chrome',
+        flags: ['--remote-debugging-port=9222']
+      }
+    },
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
